@@ -12,7 +12,7 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-
+gem 'pg'
 group :doc do
   gem 'sdoc', require: false
 end
@@ -20,7 +20,7 @@ end
 group :development do
   gem 'quiet_assets'
   gem 'pry'
-  gem 'sqlite3'
+  gem 'pg'
 end
 
 group :production do
