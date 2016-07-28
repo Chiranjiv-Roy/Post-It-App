@@ -1,16 +1,5 @@
-<% if @post.errors.any? %>
-    <div class='row'>
-      <div class='alert alert-error span8'>
-        <h5>There were some errors:</h5>
-        <ul>
-          <% @post.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-<% end %>
-<%=form_for @post do |f| %>
+<%= render 'shared/errors', obj: @post %>
+<%=form_for obj do |f| %>
     <div class='control-group'>
       <%= f.label :title %>
       <%= f.text_field :title %>
@@ -29,5 +18,12 @@
     </div>
     <br/>
 
-    <%= f.submit(@post.new_record? ? 'Create Post' : 'Update Post', class: 'btn btn-primary') %>
+    <div class='control-group'>
+      <%= f.label "Categories" %>
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+      <%= cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
+      <% end %>
+    </div>
+
+    <%= f.submit(obj.new_record? ? 'Create Post' : 'Update Post', class: 'btn btn-primary') %>
 <%end%>
