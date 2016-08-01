@@ -1,3 +1,6 @@
+
+
+
 <div class='well'>
   <%= form_for @user do |f| %>
       <%= render 'shared/errors', obj: @user %>
@@ -7,7 +10,7 @@
       </div>
       <div class='control-group'>
         <%= f.label :password %>
-        <%= f.text_field :password %>
+        <%= f.password_field :password %>
       </div>
       <%= f.submit @user.new_record? ? "Register" : "Update Profile", class: 'btn btn-success' %>
    <% end %>

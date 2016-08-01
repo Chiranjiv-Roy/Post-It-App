@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  before_action :require_user, except: [:show, :index]
+
   def index
     @posts = Post.all
   end
@@ -14,7 +17,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.creator = User.first      #change this once authentication is complete
+    @post.creator = current_user     #change this once authentication is complete
 
     if @post.save
       flash[:notice] = "Your Post was created."

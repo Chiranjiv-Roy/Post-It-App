@@ -6,12 +6,4 @@ module ApplicationHelper
   def display_datetime(dt)
     dt.strftime("%d/%m/%Y %l:%M%P %Z")
   end
-
-  def new_record?
-
-  end
-
-  def current_user
-
-  end
 end
