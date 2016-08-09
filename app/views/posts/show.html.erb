@@ -6,8 +6,10 @@
 
 <p>
 <% @post.categories.each do |category| %>
-    <%= render 'categories/category', category: category %>
-<%end%>
+      <span class='badge'>
+        <%= link_to category.name, category_path(category) %>
+      </span>
+<% end %>
 </p>
 <p class='lead'>
   <%= @post.title %>
@@ -23,8 +25,8 @@
   <%= form_for [@post, @comment] do |f| %>
     <%= render 'shared/errors', obj: @comment %>
       <div class='control-group'>
-        <% f.label :body, "Leave a comment" %>
-        <%f.text_area :body, rows: 3, class: 'span4' %>
+        <%= f.label :body, "Leave a comment" %>
+        <%= f.text_area :body, rows: 3, class: 'span4' %>
       </div>
         <%= f.submit "Create Comment", class: "btn btn-primary" %>
   <% end %>
@@ -36,7 +38,7 @@
     <div class='well span8'>
     <em>"<%= comment.body %>"</em>
       </br>
-      <span class='quiet'>by</span><%= comment.creator.username %>
-      <small>at <%=post.created_at%></small>
+      <span class='quiet'>by </span><%= comment.creator.username %>
+      <small>at <%= @post.created_at %></small>
     </div>
 <% end %>
