@@ -20,13 +20,25 @@
 
 <% if params[:tab].nil? %>
   <% @user.posts.each do |post| %>
+        <div class='span0 well text-center'>
+          <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
+              <i class='icon-arrow-up'></i>
+          <% end %>
+          </br>
+          <%= post.total_votes%> votes
+          </br>
+          <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
+              <i class='icon-arrow-down'></i>
+          <% end %>
+        </div>
+        <div class='span8 well'>
         <p>
           <% post.categories.each do |category| %>
               <%= render 'categories/category', category: category %>
           <% end %>
         </p>
         <p class='lead'>
-          <%= post.title %>
+        <h4><%= link_to post.title, post.url %></h4>
         <hr/>
         </p>
         <p>
@@ -34,14 +46,28 @@
         <hr/>
         </p>
         <% end %>
+    </div>
 <% elsif params[:tab] == 'comments' %>
         <% @user.comments.each do |comment| %>
+        <div class="row">
+          <div class='span0 well text-center'>
+            <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do %>
+                <i class='icon-arrow-up'></i>
+            <% end %>
+            </br>
+            <%= comment.total_votes%> votes
+            </br>
+            <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do %>
+                <i class='icon-arrow-down'></i>
+            <% end %>
+          </div>
             <div class='well span8'>
               <em>"<%= comment.body %>"</em>
               on <%= link_to comment.post.title, post_path(comment.post) %>
               </br>
-              <span class='quiet'>by</span><%= comment.creator.username %>
+              <span class='quiet'>by </span><%= comment.creator.username %>
               <small>at <%=comment.created_at%></small>
             </div>
+        </div>
         <% end %>
 <% end %>

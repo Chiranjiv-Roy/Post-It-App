@@ -23,7 +23,6 @@
              </span>
           <% end %>
         </p>
-
         <h4><%= link_to post.title, post.url %></h4>
           <p><%= post.description %></p>
           <p>
@@ -36,6 +35,8 @@
             </span>
           </small>
         </div>
+      <div class="pull-right">
+        [<%= link_to 'edit', edit_post_path(post) %>]
+      </div>
     </div>
-    <%= link_to 'edit', edit_post_path(post) %>
   <% end %>

@@ -11,8 +11,21 @@
       </span>
 <% end %>
 </p>
+<div class='row'>
+<div class='span0 well text-center'>
+  <%= link_to vote_post_path(@post, vote: true), method: 'post' do %>
+      <i class='icon-arrow-up'></i>
+  <% end %>
+  </br>
+  <%= @post.total_votes%> votes
+  </br>
+  <%= link_to vote_post_path(@post, vote: false), method: 'post' do %>
+      <i class='icon-arrow-down'></i>
+  <% end %>
+</div>
+<div class='span8 well'>
 <p class='lead'>
-  <%= @post.title %>
+  <h4><%= link_to @post.title, @post.url %></h4>
      <hr/>
 </p>
 
@@ -20,8 +33,10 @@
   <%= @post.description %>
       <hr/>
 </p>
-
+</div>
+</div>
 <% if logged_in? %>
+  <div class='row'>
   <%= form_for [@post, @comment] do |f| %>
     <%= render 'shared/errors', obj: @comment %>
       <div class='control-group'>
@@ -30,15 +45,28 @@
       </div>
         <%= f.submit "Create Comment", class: "btn btn-primary" %>
   <% end %>
+  </div>
 <% end %>
 
 <h5>Comments:</h5>
-
 <% @post.comments.each do |comment| %>
+  <div class='row'>
+      <div class='span0 well text-center'>
+        <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do %>
+            <i class='icon-arrow-up'></i>
+        <% end %>
+        </br>
+        <%= comment.total_votes%> votes
+        </br>
+        <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do %>
+            <i class='icon-arrow-down'></i>
+        <% end %>
+      </div>
     <div class='well span8'>
     <em>"<%= comment.body %>"</em>
       </br>
       <span class='quiet'>by </span><%= comment.creator.username %>
       <small>at <%= @post.created_at %></small>
     </div>
+  </div>
 <% end %>
