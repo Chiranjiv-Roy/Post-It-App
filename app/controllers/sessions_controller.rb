@@ -1,14 +1,15 @@
 class SessionsController < ApplicationController
 
   def new
-
+    redirect_to '/auth/facebook'
   end
 
   def create
-    user = User.find_by_username(params[:username])     #This is the line that is causing all the problems
-    if user && user.authenticate(params[:password])
+    auth = env["omniauth.auth"]
+    user = User.where(:provider => auth['provider'],:uid => auth['uid']).first || User.from_omniauth(env["omniauth.auth"])      
+    if user #& user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:notice] = "You've logged in!"
+      flash[:notice] = "You've logged in via facebook!"
       redirect_to root_path
     else
       flash[:notice] = "There's something wrong with your username and password."

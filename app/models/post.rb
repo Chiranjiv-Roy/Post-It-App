@@ -4,6 +4,8 @@ class Post < ActiveRecord::Base
   has_many :post_categories
   has_many :categories, through: :post_categories
   has_many :votes, as: :voteable
+  has_attached_file :pic, styles: { medium: "600x500>", thumb: "100x100>" }, default_url: "/assets/images/missing.png"
+  validates_attachment_content_type :pic, content_type: /\Aimage\/.*\z/
 
   validates :title, presence: true, length: {minimum: 5}
   validates :url, presence: true, uniqueness: true

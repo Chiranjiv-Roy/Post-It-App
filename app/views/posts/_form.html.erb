@@ -25,5 +25,10 @@
       <% end %>
     </div>
 
+    <div class='control-group'>
+      <%= f.label "Upload Image" %>
+      <%= f.file_field :pic %>
+    </div>
+
     <%= f.submit(obj.new_record? ? 'Create Post' : 'Update Post', class: 'btn btn-primary') %>
 <%end%>

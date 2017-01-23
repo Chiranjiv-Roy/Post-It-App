@@ -1,6 +1,6 @@
 <ul class="nav">
   <li>
-    <%= link_to 'Postit!',root_path, :class=>'brand' %>
+    <%= link_to 'POSTIT!',root_path, :class=>'brand' %>
   </li>
 </ul>
 <div class='btn-group nav_item'>
@@ -30,7 +30,7 @@
 </div>
 <div class='btn-group nav-item'>
   <%= link_to('', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown') do %>
-  <%= current_user.username %>
+  <%= current_user.name %>
       <span class='caret'></span>
   <% end %>
   <ul class='dropdown-menu'>
@@ -60,6 +60,9 @@
  </div>
     <div class='nav_item'>
       <%= link_to 'Register',register_path, class: 'btn btn-success btn-small' %>
+    </div>
+    <div class='nav_item'>
+      <%= link_to "Facebook Login", '/auth/facebook' %>
     </div>
   <% end %>
 

@@ -1,20 +1,21 @@
-<h1>Profile: <%= @user.username %></h1>
+<h1>Profile: <%= @user.name %></h1>
 
 <div class='well'>
   <dl class='dl-horizontal'>
     <dt>Username:</dt>
-    <dd><%= @user.username %></dd>
+    <%= binding.pry %>
+    <dd><%= @user.name %></dd>
   </dl>
 </div>
 
-<h5> <%= @user.username %>'s activity</h5>
+<h5> <%= @user.name %>'s activity</h5>
 
 <ul class='nav nav-tabs'>
   <li class='<%= 'active' if params[:tab].nil? %>'>
-    <%= link_to "Posts (#{@user.posts.size})", user_path(@user) %>
+    <%= link_to "Posts (#{@user.posts.count})", user_path(@user) %>
   </li>
   <li class='<%= 'active' if params[:tab] == 'comments' %>'>
-    <%= link_to "Comments (#{@user.comments.size})", user_path(@user, tab: 'comments') %>
+    <%= link_to "Comments (#{@user.comments.count})", user_path(@user, tab: 'comments') %>
   </li>
 </ul>
 
@@ -65,7 +66,7 @@
               <em>"<%= comment.body %>"</em>
               on <%= link_to comment.post.title, post_path(comment.post) %>
               </br>
-              <span class='quiet'>by </span><%= comment.creator.username %>
+              <span class='quiet'>by </span><%= comment.creator.name %>
               <small>at <%=comment.created_at%></small>
             </div>
         </div>
