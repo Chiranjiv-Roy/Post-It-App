@@ -1,6 +1,6 @@
 PostitTemplate::Application.routes.draw do
-  root to: 'posts#index'
-
+  root to: 'pages#show'
+  get '/view_posts', to: 'posts#index'
   get '/register', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

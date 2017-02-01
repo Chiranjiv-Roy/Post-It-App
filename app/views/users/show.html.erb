@@ -20,6 +20,7 @@
 
 <% if params[:tab].nil? %>
   <% @user.posts.each do |post| %>
+  <row>
         <div class='span0 well text-center'>
           <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
               <i class='icon-arrow-up'></i>
@@ -47,6 +48,7 @@
         </p>
         <% end %>
     </div>
+  </row>  
 <% elsif params[:tab] == 'comments' %>
         <% @user.comments.each do |comment| %>
         <div class="row">
