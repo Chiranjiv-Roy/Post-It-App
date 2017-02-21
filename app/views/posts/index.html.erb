@@ -27,7 +27,7 @@
           <p><%= post.description %></p>
           <%= image_tag post.pic.url(:thumb), :class => "style_image" %> 
           <p>
-            <span class='quiet'>posted by </span><%= post.creator.name %>
+            <span class='quiet'>posted by </span><%= link_to("#{post.creator.name}", user_path(post.creator)) %>
             <small>at <%=post.created_at%></small>
           </p>
           <small>

@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     if user #& user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = "You've logged in via facebook!"
+
       redirect_to root_path
     else
       flash[:notice] = "There's something wrong with your username and password."

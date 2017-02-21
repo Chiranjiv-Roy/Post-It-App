@@ -4,9 +4,18 @@
   <dl class='dl-horizontal'>
     <dt>Username:</dt>
     <dd><%= @user.name %></dd>
+    <dt>Followers:</dt>
+    <dd><%= @user.followers(User).count %></dd>
+    <dt>Following:</dt>
+    <dd><%= @user.followees(User).count %></dd>
   </dl>
 </div>
-
+<% if current_user.follows?(@user) %>
+<%= link_to('Unfollow',unfollow_user_path, method: :post, class: 'btn btn-info btn-small') %>
+<% else %>
+<%= link_to('Follow',follow_user_path, method: :post, class: 'btn btn-info btn-small') %>
+<% end %>
+</br>
 <h5> <%= @user.name %>'s activity</h5>
 
 <ul class='nav nav-tabs'>

@@ -9,7 +9,7 @@ PostitTemplate::Application.routes.draw do
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 
-  resources :posts, except: [:destroy] do
+  resources :posts, on: :member, except: [:destroy] do
     member do
       post 'vote'
     end
@@ -20,5 +20,8 @@ PostitTemplate::Application.routes.draw do
     end
   end
   resources :categories, only: [:new, :create, :show]
-  resources :users, only: [:show, :create, :edit, :update]
+  resources :users, only: [:show, :create, :edit, :update] do
+    post 'follow',   to: 'socializations#follow', on: :member
+    post 'unfollow', to: 'socializations#unfollow', on: :member
+  end
 end

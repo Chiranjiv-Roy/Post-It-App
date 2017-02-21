@@ -11,6 +11,7 @@ gem 'omniauth-facebook'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'pry'
 gem "koala", "~> 2.2"
+gem "socialization"
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
