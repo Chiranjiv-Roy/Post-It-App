@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :votes
+  has_many :notifications, foreign_key: 'recipient_id'
   acts_as_followable
   acts_as_follower
   has_secure_password validations: false
