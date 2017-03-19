@@ -6,8 +6,10 @@ class CommentsController < ApplicationController
   @comment = @post.comments.build(params.require(:comment).permit(:body))
   @comment.creator = current_user
     if @comment.save
-      (current_user.followees(User).uniq - [current_user] + [@post.creator]).uniq.each do |followee|
-        Notification.new(recipient: followee, actor:current_user, action: "commented on a post", notifiable: @comment)
+      @post.comments.map(&:creator).uniq.each do |thread_member|
+        @notif = Notification.new(recipient: thread_member, actor: current_user, action: "commented on a post", notifiable: @comment)
+        @notif.save
+      end
       flash[:notice] = "Your comment was added."
       redirect_to post_path(@post)
     else
@@ -24,7 +26,9 @@ class CommentsController < ApplicationController
         action = "upvoted your comment"
       else
         action = "downvoted your comment"
-      Notification.new(recipient: comment.creator, actor:current_user, action: action, notifiable: vote)
+      end
+      @notif = Notification.new(recipient: comment.creator, actor: current_user, action: action, notifiable: vote)
+      @notif.save
       flash[:notice] = "Your vote was counted successfully."
     else
       flash[:error] = "You can only vote on a comment once."

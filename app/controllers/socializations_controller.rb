@@ -2,7 +2,6 @@ class SocializationsController < ApplicationController
 	 before_filter :load_socializable
 
   def follow
-    binding.pry
     current_user.follow!(@socializable)
     redirect_to :back
   end
