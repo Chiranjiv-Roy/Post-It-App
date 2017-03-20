@@ -62,8 +62,11 @@
     <div class='nav_item'>
       <%= link_to 'Register',register_path, class: 'btn btn-success btn-small' %>
     </div>
-    <div class='nav_item'>
-      <%= link_to "Facebook Login", '/auth/facebook' %>
+    <div class='nav-item btn-group'>
+      <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <i class="fa fa-bell" aria-hidden="true"></i>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu1"></div>
     </div>
   <% end %>
 

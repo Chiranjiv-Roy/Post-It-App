@@ -7,8 +7,7 @@ class CommentsController < ApplicationController
   @comment.creator = current_user
     if @comment.save
       @post.comments.map(&:creator).uniq.each do |thread_member|
-        @notif = Notification.new(recipient: thread_member, actor: current_user, action: "commented on a post", notifiable: @post)
-        @notif.save
+      Notification.create(recipient: thread_member, actor: current_user, action: "commented on a post", notifiable: @comment)
       end
       flash[:notice] = "Your comment was added."
       redirect_to post_path(@post)
@@ -27,8 +26,7 @@ class CommentsController < ApplicationController
       else
         action = "downvoted your comment"
       end
-      @notif = Notification.new(recipient: comment.creator, actor: current_user, action: action, notifiable: @post)
-      @notif.save
+      Notification.create(recipient: comment.creator, actor: current_user, action: action, notifiable: comment)
       flash[:notice] = "Your vote was counted successfully."
     else
       flash[:error] = "You can only vote on a comment once."

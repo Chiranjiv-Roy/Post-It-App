@@ -12,7 +12,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'pry'
 gem "koala", "~> 2.2"
 gem "socialization"
-
+gem "font-awesome-rails"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

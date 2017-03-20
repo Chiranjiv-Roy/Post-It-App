@@ -20,8 +20,7 @@ class PostsController < ApplicationController
     @post.creator = current_user     #change this once authentication is complete
     if @post.save
       (current_user.followers(User).uniq - [current_user]).each do |follower|
-        @notif = Notification.new(recipient: follower, actor: current_user, action: "made a post", notifiable: @post)
-        @notif.save
+        Notification.create(recipient: follower, actor: current_user, action: "made a post", notifiable: @post)
       end 
       flash[:notice] = "Your Post was created."
       redirect_to posts_path
@@ -55,8 +54,7 @@ class PostsController < ApplicationController
       else
         action = "downvoted your post"
       end
-        @notif = Notification.new(recipient: @post.creator, actor: current_user, action: action, notifiable: @post)
-        @notif.save
+      Notification.create(recipient: @post.creator, actor: current_user, action: action, notifiable: @post)
       flash[:notice] = "Your vote was counted successfully."
     else
       flash[:error] = "You can vote on a post only once."
