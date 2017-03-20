@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   @comment.creator = current_user
     if @comment.save
       @post.comments.map(&:creator).uniq.each do |thread_member|
-        @notif = Notification.new(recipient: thread_member, actor: current_user, action: "commented on a post", notifiable: @comment)
+        @notif = Notification.new(recipient: thread_member, actor: current_user, action: "commented on a post", notifiable: @post)
         @notif.save
       end
       flash[:notice] = "Your comment was added."
@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
       else
         action = "downvoted your comment"
       end
-      @notif = Notification.new(recipient: comment.creator, actor: current_user, action: action, notifiable: vote)
+      @notif = Notification.new(recipient: comment.creator, actor: current_user, action: action, notifiable: @post)
       @notif.save
       flash[:notice] = "Your vote was counted successfully."
     else

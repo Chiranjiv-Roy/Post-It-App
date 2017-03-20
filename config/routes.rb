@@ -19,6 +19,7 @@ PostitTemplate::Application.routes.draw do
       end
     end
   end
+  resources :notifications
   resources :categories, only: [:new, :create, :show]
   resources :users, only: [:show, :create, :edit, :update] do
     post 'follow',   to: 'socializations#follow', on: :member

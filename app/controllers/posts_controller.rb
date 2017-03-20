@@ -55,7 +55,7 @@ class PostsController < ApplicationController
       else
         action = "downvoted your post"
       end
-        @notif = Notification.new(recipient: @post.creator, actor: current_user, action: action, notifiable: vote)
+        @notif = Notification.new(recipient: @post.creator, actor: current_user, action: action, notifiable: @post)
         @notif.save
       flash[:notice] = "Your vote was counted successfully."
     else
