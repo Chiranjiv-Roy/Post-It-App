@@ -55,19 +55,24 @@
   </ul>
 </div>
 <img class='img-circle' src=auth.info.image />
-  <% else %>
+
  <div class='nav_item'>
    <%= link_to 'Login',login_path, class: 'btn btn-info btn-small' %>
  </div>
     <div class='nav_item'>
       <%= link_to 'Register',register_path, class: 'btn btn-success btn-small' %>
     </div>
-    <div class='nav-item btn-group'>
-      <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <i class="fa fa-bell" aria-hidden="true"></i>
-      </a>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu1"></div>
+    <div class='nav-item btn-group' id="findthis">
+      <!--<a class="dropdown-toggle nav-link" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+      <span class="btn dropdown-toggle fa fa-bell" data-toggle="dropdown" aria-haspopup="true">&nbsp;&nbsp;&nbsp;<span class="caret"></span></span>
+
+      <!--</a>-->
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li>option1</li>
+        <li>option2</li>
+      </ul>
     </div>
+<% else %>
   <% end %>
 
 
