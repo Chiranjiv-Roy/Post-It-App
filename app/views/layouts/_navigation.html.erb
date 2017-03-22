@@ -54,25 +54,24 @@
     </li>
   </ul>
 </div>
-<img class='img-circle' src=auth.info.image />
+<div class='nav-item btn-group' data-behavior='notifications'>
+      <!--<a class="dropdown-toggle nav-link" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+      <span class="btn dropdown-toggle fa fa-bell" data-toggle="dropdown" aria-haspopup="true" data-behavior="notification-link">&nbsp;&nbsp;&nbsp;<span class="caret"></span></span>
+      <span data-behavior="unread-count"></span>
 
+      <!--</a>-->
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" data-behavior="notification-items">
+        <!-- <li> option1 </li> -->
+        <!-- <li> option2 </li> -->
+      </ul>
+    </div>
+<% else %>
  <div class='nav_item'>
    <%= link_to 'Login',login_path, class: 'btn btn-info btn-small' %>
  </div>
     <div class='nav_item'>
       <%= link_to 'Register',register_path, class: 'btn btn-success btn-small' %>
     </div>
-    <div class='nav-item btn-group' id="findthis">
-      <!--<a class="dropdown-toggle nav-link" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
-      <span class="btn dropdown-toggle fa fa-bell" data-toggle="dropdown" aria-haspopup="true">&nbsp;&nbsp;&nbsp;<span class="caret"></span></span>
-
-      <!--</a>-->
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li>option1</li>
-        <li>option2</li>
-      </ul>
-    </div>
-<% else %>
   <% end %>
 
 
