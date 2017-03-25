@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
   def facebook
     @facebook ||= Koala::Facebook::API.new(oauth_token)
   end
+
+  def get_image_url
+    "http://graph.facebook.com/#{self.uid}/picture"
+  end
 end

@@ -1,15 +1,17 @@
 class Notifications
 	constructor: ->
  		@notifications = $("[data-behavior='notifications']")
+ 		console.log("hi")
  		@setup() if @notifications.length > 0
 
  	setup: ->
  		$("[data-behavior='notifications-link']").on "click", @handleClick
  		$.ajax(
- 		  url: "/notifications.json",
+ 		  url: "http://localhost:3000/notifications.json",
           dataType: "JSON",
           method: "GET",
           success: @handleSuccess
+          error: alert ("i too failed")
  		)
 
  	handleClick: (e) ->
@@ -18,6 +20,7 @@ class Notifications
  		  dataType: "JSON",
  		  method: "POST",
  		  success: ->
+ 		    console.log("hiiiii")
  		    $("[data-behavior='unread-count']").text(0)
  		)	
 

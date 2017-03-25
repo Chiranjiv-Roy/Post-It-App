@@ -25,7 +25,11 @@
         </p>
         <h4><%= link_to post.title, post.url %></h4>
           <p><%= post.description %></p>
+          <% unless post.youtube_video_id.nil?%>
+          <iframe width="268" height="200" src="http://www.youtube.com/embed/K0ibBPhiaG0" frameborder="0"></iframe>
+          <% else %>
           <%= image_tag post.pic.url(:thumb), :class => "style_image" %> 
+          <% end %>
           <p>
             <span class='quiet'>posted by </span><%= link_to("#{post.creator.name}", user_path(post.creator)) %>
             <small>at <%=post.created_at%></small>
